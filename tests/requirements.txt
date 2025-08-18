@@ -1,0 +1,7 @@
+--extra-index-url https://cae-artifactory.jpl.nasa.gov/artifactory/api/pypi/pypi-release-virtual/simple
+ingenium_client==1.0
+PyJWT==1.5.2
+requests==2.18.4
+python-dateutil==2.6.1
+cryptography==2.2.2
+unittest-xml-reporting==2.4.0

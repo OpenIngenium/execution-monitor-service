@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Execution Monitor</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { padding: 3px; width: 80%; }
+      form input { padding: 10px; width: 70%; margin-right: .5%; }
+      form button { width: 15%; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+      #messages { margin-bottom: 40px }
+    </style>
+  </head>
+  <body>
+    <form action="">
+      <label>execution_id: </label><input id="execution_id" autocomplete="off" /><br>
+      <label>jwt_token: </label><input id="jwt_token" autocomplete="off" /><br>
+      <button>Start Watch</button>
+    </form>
+    <pre>
+      <ul id="messages"></ul>  
+    </pre>
+  
+    <script src="https://cdn.socket.io/socket.io-1.7.3.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(function () {
+  
+        $('form').submit(function() {
+          let execution_id = $('#execution_id').val();
+          let jwt_token = $('#jwt_token').val();
+          console.log('execution_id:', execution_id);
+          console.log('jwt_token:', jwt_token);
+
+          var socket = io('/api/v2/execution_event_subscribe', {
+              path: '/execution_monitor/socket.io',
+              query: {
+                execution_id: execution_id, 
+                token: jwt_token
+              },  
+              transports: ['websocket']
+          });          
+          // let connect_path = '/execution_event_subscribe?execution_id=' + execution_id;
+          // console.log('connect_path:', connect_path);
+
+          socket.on('connect', function() {
+            console.log('connected to WS server');  
+          });    
+          
+          socket.on('disconnect', function(reason) {
+            console.log('connected to WS server was disconnected. reason:', reason);  
+          });          
+          
+          socket.on('execution-event', function(msg) {
+            console.log('execution-event:', msg);
+            let msg_str = JSON.stringify(msg, 0, 2);
+            $('#messages').append($('<li>').text(msg_str));
+          });                
+
+          return false;
+        });
+      });
+    </script>
+  </body>
+</html>
