@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:OpenIngenium/execution-monitor-service.git"
+    "url": "git@github.jpl.nasa.gov:Ingenium/execution-monitor-service.git"
   },
   "keywords": [
     "Ingenium",
