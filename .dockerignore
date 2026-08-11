@@ -1,0 +1,11 @@
+image/node_modules
+image/coverage
+image/tests
+**/*.log
+.git
+.gitignore
+.nvmrc
+.project
+Jenkinsfile
+README.md
+*.md
