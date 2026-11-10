@@ -1,0 +1,34 @@
+{
+  "name": "execution-monitor-service",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "description": "Ingenium Execution Monitor Service that supports live update of executions through Web Socket",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenIngenium/execution-monitor-service.git"
+  },
+  "keywords": [
+    "Ingenium",
+    "Socket.IO"
+  ],
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "dependencies": {
+    "express": "^4.22.3",
+    "jsonwebtoken": "^9.0.3",
+    "socket.io": "^4.8.4",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2"
+  }
+}
